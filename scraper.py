@@ -1,17 +1,34 @@
 import wikipedia
 import csv
 
-def get_sentence(page_name):
-    # TODO: I think I can use this function for both get_random_english
-    # get_random_dutch. In theory this should just take a link to a page...
 
+def clean(text):
+    # TODO:
+
+
+def get_text(page_name):
+    # fetch summary
+    text = wikipedia.page(page_name).summary()
+
+    # clean text to meet requirements of school project data samples
+    text = clean(text)
+
+    return text
 
 def get_random_dutch(pages):
     # TODO:
 
 
-def get_random_english(pages):
-    # TODO:
+def get_random_english(num_pages):
+    sentences = []
+    # generate random pages
+    pages = [wikipedia.random(1) for i in range(num_pages)]
+    for page in pages:
+        # get text from each page
+        for text in get_text(page):
+            # append to sentences
+            sentences.append(text)
+    return sentences
 
 
 def main():
