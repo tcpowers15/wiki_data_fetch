@@ -63,6 +63,7 @@ def main():
     for sample in dutch_sentences:
         file.write('nl|'+sample)
 
+    # close file
     file.close()
 
 
