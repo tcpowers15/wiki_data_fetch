@@ -3,7 +3,8 @@ import requests
 import csv
 
 
-wiki_random_url = 'http://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exintro&explaintext&exchars=500&format=json'
+wiki_random_url_en = 'http://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exintro&explaintext&exchars=500&format=json'
+wiki_random_url_nl = 'http://nl.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exintro&explaintext&exchars=500&format=json'
 
 
 def clean_text(text):
@@ -23,14 +24,25 @@ def get_random_sentences(num_data, lang_code):
     :return: list of strings
     """
     sentences = []
-    pages = []
+    url = ''
+    if lang_code == 'nl':
+        url = wiki_random_url_nl
+    else:
+        url = wiki_random_url_en
 
-    request = requests.get(wiki_random_url)
-    json_data = json.loads(request.content)
-    text = json_data['query']\
-                    ['pages']\
-                    [list(json_data['query']['pages'].keys())[0]]\
-                    ['extract']
+    for i in range(num_data):
+        request = requests.get(url)
+        json_data = json.loads(request)
+        text = json_data['query']\
+            ['pages']\
+            [list(json_data['query']['pages'].keys())[0]]\
+            ['extract']
+
+        text = clean_text(text)
+        sentences.append(text)
+
+    return sentences
+
 
 
 
