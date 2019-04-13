@@ -47,7 +47,7 @@ def get_random_sentences(num_data, lang_code):
 
 def main():
     # number of sentences to get
-    num_data = 1
+    num_data = 500
 
     # get the data
     english_sentences = get_random_sentences(num_data, 'en')
@@ -61,7 +61,7 @@ def main():
         file.write('en|'+sample+'\n')
 
     for sample in dutch_sentences:
-        file.write('nl|'+sample)
+        file.write('nl|'+sample+'\n')
 
     # close file
     file.close()
