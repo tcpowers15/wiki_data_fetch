@@ -1,65 +1,37 @@
-import wikipedia
+import wikipediaapi as wiki
 import csv
 
 
-def clean(text):
-    # remove punctuation
-    text.strip('.,;:/?][{}(!@#$%^&*+=-_)')
-    # extract first 15 words
-    text = ' '.join(text.split()[:15])
-    return text
-
-
-def get_text(page_name):
-    # fetch summary
-    # again trying again if exception is thrown
-    text = None
-    while text is None:
-        try:
-            text = wikipedia.page(page_name).summary
-        except:
-            pass
-
-    text = wikipedia.page(page_name).summary
-
-    # clean text to meet requirements of school project data samples
-    text = clean(text)
-
-    return text
-
-def get_random_dutch(pages):
-    # TODO:
+def clean_text(text):
+    # Todo:
     return 0
 
 
-def get_random_english(num_pages):
-    sentences = []
-    # generate random pages
-    pages = []
-    # request a random page from wikipedia
-    # the package seems to throw a lot of busy
-    # exceptions so I am taking the try try again approach
-    for i in range(num_pages):
-        result = None
-        while result is None:
-            try:
-                # try to get page, and try again if error
-                result = wikipedia.random(1)
+def get_random_sentences(num_data, lang_code):
+    """
+    Makes calls using wikipedia api and returns a list
+    of sentences already cleaned and ready to be used in the intelligent
+    systems project
 
-            except:
-                pass
-        pages.append(result)
+    :param num_data: the number of sentences to produce
+    :param lang_code: which language to get sentences in, accepts any
+                        that is accepted by wikipedia
+    :return: list of strings
+    """
+    # create Wikipedia api object
 
-    for page in pages:
-        # get text from each page
-        sentences.append(get_text(page))
-    return sentences
 
 
 def main():
-    english_sentences = get_random_english(1)
-    print(english_sentences)
-    print("fuck")
+    # number of sentences to get
+    num_data = 10
+
+    # get the data
+    english_sentences = get_random_sentences(num_data, 'en')
+    dutch_sentences = get_random_sentences(num_data, 'nl')
+
+    # write the lists to csv
+    # todo
 
 
 if __name__ == "__main__":
