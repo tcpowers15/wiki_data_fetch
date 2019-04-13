@@ -7,5 +7,4 @@ sentences and to only collect 15 word phrases.
 This program is fairly modular and can be easily adapted
 for other projects
 
-REQUIREMENTS:  
-Wikipedia-API 0.5.1
+REQUIREMENTS: requests, json

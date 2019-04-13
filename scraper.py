@@ -1,5 +1,9 @@
-import wikipediaapi as wiki
+import json
+import requests
 import csv
+
+
+wiki_random_url = 'http://en.wikipedia.org/w/api.php?action=query&generator=random&grnnamespace=0&prop=extracts&exintro&explaintext&exchars=500&format=json'
 
 
 def clean_text(text):
@@ -18,7 +22,16 @@ def get_random_sentences(num_data, lang_code):
                         that is accepted by wikipedia
     :return: list of strings
     """
-    # create Wikipedia api object
+    sentences = []
+    pages = []
+
+    request = requests.get(wiki_random_url)
+    json_data = json.loads(request.content)
+    text = json_data['query']\
+                    ['pages']\
+                    [list(json_data['query']['pages'].keys())[0]]\
+                    ['extract']
+
 
 
 
