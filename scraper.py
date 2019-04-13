@@ -16,7 +16,7 @@ def get_random_english(pages):
 
 def main():
     # TODO:
-    x = 5
+    x = 7
 
 
 if __name__ == "__main__":
