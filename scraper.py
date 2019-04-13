@@ -3,7 +3,11 @@ import csv
 
 
 def clean(text):
-    # TODO:
+    # remove punctuation
+    text.strip('.,;:/?][{}(!@#$%^&*+=-_)')
+    # extract first 15 words
+    text = ' '.join(text.split()[:15])
+    return text
 
 
 def get_text(page_name):
@@ -17,6 +21,7 @@ def get_text(page_name):
 
 def get_random_dutch(pages):
     # TODO:
+    return 0
 
 
 def get_random_english(num_pages):
@@ -32,8 +37,8 @@ def get_random_english(num_pages):
 
 
 def main():
-    # TODO:
-    x = 7
+    english_sentences = get_random_english(10)
+    print(english_sentences)
 
 
 if __name__ == "__main__":
